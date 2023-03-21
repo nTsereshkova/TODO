@@ -3,7 +3,6 @@ import './TaskList.css';
 const TaskList = () => {
   return (
     <ul>
-      {' '}
       таски
       <li> Таска 1</li>
       <li> Таска 2</li>
