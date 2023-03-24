@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const mainSlice = createSlice({
   name: 'main',
-  initialState: {},
+  initialState: {
+    showCalendar: false,
+  },
   reducers: {
     addTasks: (state, action) => {
       state.characters = [...action.payload];
@@ -11,6 +13,10 @@ const mainSlice = createSlice({
     mainErrorHandler: (state, action) => {
       state.error = action.payload;
       state.isError = true;
+    },
+    showCalendarHandler: state => {
+      console.log('show cLLENADR CLICKED');
+      state.showCalendar = !state.showCalendar;
     },
   },
 });

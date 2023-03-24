@@ -1,0 +1,17 @@
+.calendar {
+  display: flex;
+}
+/* input[type='date'] {
+  background-color: red;
+  outline: none;
+  display: flex;
+} */
+
+.calendar-item {
+  width: 95%;
+  height: fit-content;
+  border: 1px solid red;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: scroll;
+}

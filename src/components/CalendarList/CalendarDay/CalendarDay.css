@@ -1,0 +1,23 @@
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: black;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 75px;
+  width: 150px;
+  padding: 0 10px;
+  margin: 0 10px;
+  border: 1px solid blue;
+}
+.calendar-day:hover {
+  color: white;
+  background-color: black;
+}
+
+.calendar-day:focus {
+  color: white;
+  background-color: black;
+}

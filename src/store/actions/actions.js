@@ -10,7 +10,7 @@ export const {
   authErrorHandler,
 } = authSlice.actions;
 
-export const { addTasks, mainErrorHandler } = mainSlice.actions;
+export const { addTasks, mainErrorHandler, showCalendarHandler } = mainSlice.actions;
 
 // тут заменить на запрос к firebase
 export const signInFetch = someData => {
