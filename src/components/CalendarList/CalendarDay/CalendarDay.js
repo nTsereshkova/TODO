@@ -7,14 +7,13 @@ const CalendarDay = ({ item }) => {
   //console.log(typeof item);
   const weekDay = item.slice(0, 3);
   const day = item.slice(5, 7);
-  if (item) {
-    return (
-      <div className="calendar-day">
-        <p>{day}</p>
-        <p> {weekDay}</p>
-      </div>
-    );
-  }
+
+  return (
+    <div className="calendar-day">
+      <div>{day}</div>
+      <div> {weekDay}</div>
+    </div>
+  );
 };
 
 export default CalendarDay;

@@ -31,7 +31,6 @@ const CalendarList = () => {
             <CalendarDay item={item} key={item} />
           ))}
         </div>
-
         <BsCalendarWeek
           onClick={() => {
             dispatch(showCalendarHandler());
@@ -48,10 +47,7 @@ const CalendarList = () => {
           />
         )}
       </div>
-
-      <p> please add </p>
-      <button>+ </button>
-      <TaskList />
+      {/* <TaskList /> */}
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Main = () => {
       {!isError ? (
         <>
           <CalendarList />
-          {/* <TaskList /> */}
+          <TaskList />
         </>
       ) : (
         { error }

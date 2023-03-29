@@ -1,6 +1,7 @@
-body {
-  max-width: 1920px;
-  min-height: 100%;
+body,
+html {
+  /* max-width: 1920px; */
+  min-height: 100vh;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -8,6 +9,8 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
 }
 
 code {

@@ -4,6 +4,7 @@ const mainSlice = createSlice({
   name: 'main',
   initialState: {
     showCalendar: false,
+    choosenDate: new Date(Date.now()),
   },
   reducers: {
     addTasks: (state, action) => {
@@ -22,3 +23,5 @@ const mainSlice = createSlice({
 });
 
 export default mainSlice;
+
+// послать автозапрос на установление в стейт текущей даты

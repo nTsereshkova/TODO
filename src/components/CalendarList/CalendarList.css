@@ -1,5 +1,8 @@
 .calendar {
   display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: flex-start;
 }
 /* input[type='date'] {
   background-color: red;
@@ -8,10 +11,9 @@
 } */
 
 .calendar-item {
-  width: 95%;
-  height: fit-content;
-  border: 1px solid red;
+  width: 98%;
+  height: auto;
   display: flex;
   flex-wrap: nowrap;
-  overflow: scroll;
+  overflow: auto;
 }
