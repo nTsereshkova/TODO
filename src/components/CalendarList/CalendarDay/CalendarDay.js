@@ -9,11 +9,22 @@ const CalendarDay = ({ item }) => {
   const day = item.slice(5, 7);
 
   return (
-    <div className="calendar-day">
+    <button className="calendar-day">
       <div>{day}</div>
       <div> {weekDay}</div>
-    </div>
+    </button>
+    // <div className="calendar-day">
+    //   <div>{day}</div>
+    //   <div> {weekDay}</div>
+    // </div>
   );
 };
 
 export default CalendarDay;
+
+{
+  /* <button className="calendar-day">
+{day}
+{weekDay}
+</button> */
+}

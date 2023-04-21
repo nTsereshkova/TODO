@@ -29,8 +29,14 @@ const mainSlice = createSlice({
       console.log('добавилась задача');
       console.log(action.payload);
       // тут не добавляет корректно
-      state.tasks = [...{ id: state.tasks.length + 1, description: action.payload }];
-      //state.showCharactersDetails = false;
+      if (action.payload) {
+        state.tasks.push({
+          id: state.tasks.length + 1,
+          description: action.payload,
+        });
+      }
+
+      // state.tasks = [...{ id: state.tasks.length + 1, description: action.payload }];
     },
     mainErrorHandler: (state, action) => {
       state.error = action.payload;

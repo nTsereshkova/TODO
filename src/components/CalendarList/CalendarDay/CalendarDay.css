@@ -5,7 +5,7 @@
   align-items: center;
   color: black;
   background-color: white;
-  border: 1px solid grey;
+  border: 1px solid rgb(201, 201, 201);
   border-radius: 5px;
   height: 60px;
   flex: 0 0 50px;
@@ -14,16 +14,19 @@
 .calendar-day:first-child {
   margin: 0;
 }
-.calendar-day:focus {
-  color: white;
-  background-color: black;
-}
 
 .calendar-day:hover {
   border: 1px solid orange;
 }
 
+.calendar-day:focus {
+  color: white;
+  background-color: black;
+  border: 1px solid black;
+}
+
 .calendar-day:active {
   color: white;
-  background-color: red;
+  background-color: orange;
+  border: 1px solid orange;
 }

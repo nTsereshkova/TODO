@@ -18,6 +18,7 @@ const TaskList = () => {
   const addNewTaskHandler = () => {
     dispatch(addTasks(task));
     setAddTask(false);
+    setTask('');
   };
   return (
     <div className="task-list">
@@ -30,7 +31,6 @@ const TaskList = () => {
           taskCount={tasks.length}
         />
       ))}
-      <p> add new task </p>
 
       {addTask ? (
         <form>
@@ -40,9 +40,12 @@ const TaskList = () => {
           </button>
         </form>
       ) : (
-        <button className="add-new-task" onClick={() => setAddTask(true)}>
-          +
-        </button>
+        <>
+          <p> add new task </p>
+          <button className="add-new-task" onClick={() => setAddTask(true)}>
+            +
+          </button>
+        </>
       )}
     </div>
   );
