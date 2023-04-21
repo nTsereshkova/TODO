@@ -3,6 +3,8 @@
   flex-direction: row;
   width: 100%;
   align-items: flex-start;
+  padding-left: 30px;
+  margin: 0;
 }
 /* input[type='date'] {
   background-color: red;
@@ -15,5 +17,5 @@
   height: auto;
   display: flex;
   flex-wrap: nowrap;
-  overflow: auto;
+  overflow: visible;
 }

@@ -11,6 +11,9 @@
   flex: 0 0 50px;
   margin: 0 10px;
 }
+.calendar-day:first-child {
+  margin: 0;
+}
 .calendar-day:focus {
   color: white;
   background-color: black;

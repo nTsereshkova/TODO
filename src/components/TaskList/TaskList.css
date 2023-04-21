@@ -1,0 +1,17 @@
+.task-list {
+  display: flex;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+.add-new-task {
+  width: 70px;
+  height: 30px;
+  background-color: orange;
+  border: 1px solid orange;
+  border-radius: 3px;
+}
+
+.add-new-task:hover {
+  color: white;
+}

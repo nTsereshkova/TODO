@@ -1,0 +1,36 @@
+.task {
+  display: flex;
+  align-items: center;
+}
+.task-input {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid orange;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.task-input:checked {
+  width: 20px;
+  height: 20px;
+  background: orange;
+  border-radius: 10px;
+  color: white;
+  border: 1px solid orange;
+}
+
+.task-input:checked::after {
+  content: '\2713';
+}
+.task-input:hover {
+  border: 1px solid orange;
+  cursor: pointer;
+}
+
+/* content: '\2713' - простое обозначение галочки в css; - рабюотает с Before ::after */
+
+.task-desc {
+  padding-left: 10px;
+}
