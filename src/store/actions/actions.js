@@ -16,6 +16,7 @@ export const {
   addTasks,
   addNewTaskHandler,
   taskIsDoneHandler,
+  isDoneCheckHandler,
   mainErrorHandler,
   showCalendarHandler,
 } = mainSlice.actions;
@@ -104,6 +105,7 @@ export const loginFetch = someData => {
       .then(res => {
         if (res.status === 200) {
           console.log('eeee', res.data);
+          console.log('whole resp from login', res);
           dispatch(loginHandler({ email: res.data.email, id: res.data.localId }));
           dispatch(setTokenHandler(res.data.idToken));
         }
@@ -147,7 +149,7 @@ export const fetchTasks = token => {
           //tasks.push(response.data[key].task);
           //tasks.push({ [dataBaseKey]: JSON.parse(response.data[dataBaseKey]).task });
         }
-        console.log(tasks, 'tasks tasks tasks');
+        //console.log(tasks, 'tasks tasks tasks');
 
         dispatch(
           addTasks(
@@ -189,8 +191,8 @@ export const addNewTask = task => {
         },
       )
       .then(res => {
-        console.log(res.config.data);
-        console.log('ответ от фиреэйс какую задачу добавилт', res.config);
+        // console.log(res.config.data);
+        // console.log('ответ от фиреэйс какую задачу добавилт', res.config);
         dispatch(addNewTaskHandler(JSON.parse(res.config.data).task));
         dispatch(fetchTasks());
       });
@@ -205,6 +207,7 @@ export const taskIsDonePatch = (dataBaseKey, isDone) => {
         isDone: !isDone,
       },
     );
+    // .then(() => dispatch(fetchTasks()));
   };
 };
 // export const showUserInfoHandler = (token, userId) => {

@@ -6,6 +6,7 @@ import './Header.css';
 
 const Header = () => {
   const { user, isAuth } = useSelector(state => state.auth);
+  console.log('user', user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

@@ -13,7 +13,7 @@ import './TaskList.css';
 const TaskList = () => {
   const [addTask, setAddTask] = useState(false);
   const tasks = useSelector(state => state.main.tasks);
-  console.log('tasks from taskList', tasks);
+  //console.log('tasks from taskList', tasks);
 
   const [task, setTask] = useState('');
   const dispatch = useDispatch();
@@ -35,6 +35,7 @@ const TaskList = () => {
           key={item.id}
           //name={item.name}
           id={item.id}
+          item={item}
           description={item.description}
           isDone={item.isDone}
           dataBaseKey={item.dataBaseKey}

@@ -32,6 +32,17 @@ const mainSlice = createSlice({
         task.id === action.payload ? (task.isDone = !task.isDone) : task,
       );
     },
+    isDoneCheckHandler: (state, action) => {
+      console.log(action.payload);
+      let task = JSON.parse(localStorage.getItem(`${action.payload}`));
+      // прогнать через map на совпадение id таски , затем ей поменять исхождя из локал сторадж галочку
+      // if (state.task.isDone) {
+      //   // console.log('fgkjgfjfg)
+      // }
+      state.tasks.map(item =>
+        item.id === action.payload.id ? (item.isDone = action.payload.isDone) : item,
+      );
+    },
     mainErrorHandler: (state, action) => {
       state.error = action.payload;
       state.isError = true;

@@ -14,6 +14,7 @@ import './App.css';
 
 function App() {
   const { isAuth, token } = useSelector(state => state.auth);
+  // const {isDone} = useSelector((state)=> state.)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +25,7 @@ function App() {
     // console.log(token, 'outer useEffect');
     if (isAuth) {
       // console.log('hy from inside  useEffect', token);
-      dispatch(fetchTasks(token));
+      dispatch(fetchTasks());
     }
   });
 
