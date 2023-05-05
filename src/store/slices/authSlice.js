@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const authSlice = createSlice({
   name: 'authentification',
   initialState: {
-    isAuth: true,
+    isAuth: false,
     user: {
       login: '',
       email: '',
@@ -15,6 +15,7 @@ const authSlice = createSlice({
   reducers: {
     loginHandler: (state, action) => {
       state.isAuth = true;
+      console.log(action.payload);
       state.user = action.payload;
       localStorage.setItem('user', JSON.stringify(state.user));
     },

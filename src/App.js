@@ -8,15 +8,26 @@ import { Login } from './pages/Login';
 import { Sign } from './pages/Sign';
 import { PageNotFound } from './pages/PageNotFound';
 import { loginCheckStatusHandler } from './store/actions/actions';
+import { fetchTasks } from './store/actions/actions';
+
 import './App.css';
 
 function App() {
-  const isAuth = useSelector(state => state.auth.isAuth);
+  const { isAuth, token } = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loginCheckStatusHandler());
   }, [dispatch, isAuth]);
+
+  useEffect(() => {
+    // console.log(token, 'outer useEffect');
+    if (isAuth) {
+      // console.log('hy from inside  useEffect', token);
+      dispatch(fetchTasks(token));
+    }
+  });
+
   return (
     <div className="app">
       <Header />

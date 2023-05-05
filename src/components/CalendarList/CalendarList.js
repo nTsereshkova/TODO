@@ -22,7 +22,7 @@ const CalendarList = () => {
     dateArr[i] = innerDate;
   }
 
-  console.log(dateArr);
+  //console.log(dateArr);
   return (
     <div>
       <div className="calendar">

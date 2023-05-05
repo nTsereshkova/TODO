@@ -1,7 +1,7 @@
 import './CalendarDay.css';
 
 const CalendarDay = ({ item }) => {
-  console.log(item);
+  //console.log(item);
   // const arr = item.split('-');
   // console.log(arr);
   //console.log(typeof item);

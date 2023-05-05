@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Task } from './Task';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTasks } from '../../store/actions/actions';
+//import { addTasks } from '../../store/actions/actions';
+import { addNewTask } from '../../store/actions/actions';
 import './TaskList.css';
 
 const TaskList = () => {
   const [addTask, setAddTask] = useState(false);
   const tasks = useSelector(state => state.main.tasks);
-  console.log(tasks);
+  // console.log(tasks);
 
   const [task, setTask] = useState('');
   const dispatch = useDispatch();
@@ -16,7 +17,8 @@ const TaskList = () => {
     setTask(event.target.value);
   };
   const addNewTaskHandler = () => {
-    dispatch(addTasks(task));
+    // dispatch(addTasks(task));
+    dispatch(addNewTask(task));
     setAddTask(false);
     setTask('');
   };

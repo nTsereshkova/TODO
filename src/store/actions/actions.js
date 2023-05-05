@@ -14,18 +14,44 @@ export const { addTasks, mainErrorHandler, showCalendarHandler } = mainSlice.act
 
 // тут заменить на запрос к firebase
 export const signInFetch = someData => {
+  console.log('sign in ', someData);
+  const { email, password } = someData;
+  console.log('email', email);
   return dispatch => {
     axios
-      .post(`api/auth/sign`, {
-        headers: {
-          'Content-Type': 'application/json',
+      .post(
+        // `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/`,
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB7YzopdkUjZuPqIP6V3K2kUkBt6SqiUng`,
+        JSON.stringify({
+          email: email,
+          password: password,
+          returnSecureToken: true,
+        }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-        data: someData,
-      })
+      )
       .then(res => {
-        if (res.status === 201) {
+        console.log('lflflflfl');
+        if (res.status === 200) {
           console.log('sign in successed');
         }
+        return res;
+      })
+      .then(data => {
+        console.log(data);
+        // axios.post(
+        //   `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/`,
+        //   {
+        //     email: data.email,
+        //     token: data.idToken,
+        //     id: data.localId,
+        //   },
+        // );
+        // loginHandler({ email: data.email, token: data.idToken, id: data.localId });
+        // setTokenHandler(data.idToken);
       })
       .catch(err => dispatch(authErrorHandler(err.response.data.message)));
   };
@@ -34,44 +60,69 @@ export const signInFetch = someData => {
 // тут заменить на запрос к firebase
 
 export const loginFetch = someData => {
+  console.log(`нажали на кнопку логирования`);
   return dispatch => {
+    const { email, password } = someData;
+    console.log(email, password);
     axios
-      .post(`api/auth/login`, {
-        headers: {
-          'Content-Type': 'application/json',
+      .post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB7YzopdkUjZuPqIP6V3K2kUkBt6SqiUng`,
+        JSON.stringify({
+          email: email,
+          password: password,
+          returnSecureToken: true,
+        }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-        data: someData,
-      })
+      )
       .then(res => {
-        if (res.status === 201) {
-          dispatch(loginHandler(res.data.user));
-          dispatch(setTokenHandler(res.data.token));
+        if (res.status === 200) {
+          console.log('eeee', res.data);
+
+          dispatch(loginHandler({ email: res.data.email, id: res.data.localId }));
+          dispatch(setTokenHandler(res.data.idToken));
         }
       })
       .catch(err => dispatch(authErrorHandler(err.response.data.message)));
   };
 };
 
-export const fetchTasks = number => {
+export const fetchTasks = token => {
+  // console.log(token, 'token in dispATCJ');
   // заменить тут на бд
   return dispatch => {
-    let pageNumber = number ? number : 0;
+    //let pageNumber = number ? number : 0;
     axios
-      .get(`https://rickandmortyapi.com/api/character?page=${pageNumber + 1}`)
+      // .get(`https://rickandmortyapi.com/api/character?page=${data}`)
+      .get(
+        `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/tasks.json`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            // Authorization: 'Bearer ' + token,
+          },
+        },
+      )
       .then(response => {
+        // console.log('response fetchTasks', response);
         // dispatch(setTotalPageAmount(response.data.info.pages));
         dispatch(
           addTasks(
-            response.data.results.map(character => ({
-              //   name: character.name,
-              //   id: character.id,
-              //   image: character.image,
-              //   gender: character.gender,
-              //   species: character.species,
-              //   status: character.status,
-              //   location: character.location,
-              //   origin: character.origin,
-            })),
+            response.data.map(task =>
+              console.log(task)({
+                //   name: character.name,
+                //   id: character.id,
+                //   image: character.image,
+                //   gender: character.gender,
+                //   species: character.species,
+                //   status: character.status,
+                //   location: character.location,
+                //   origin: character.origin,
+              }),
+            ),
           ),
         );
       })
@@ -79,6 +130,27 @@ export const fetchTasks = number => {
   };
 };
 
+export const addNewTask = task => {
+  console.log(task);
+  return dispatch => {
+    axios
+      .post(
+        `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/tasks.json`,
+        JSON.stringify({ task }),
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+            // Authorization: 'Bearer ' + token,
+          },
+        },
+      )
+      .then(res => {
+        console.log('ответ от фиреэйс какую задачу добавилт', res.config.data.task);
+        dispatch(addTasks(res.config.data));
+      });
+  };
+};
 // export const showUserInfoHandler = (token, userId) => {
 //     return dispatch => {
 //       axios
