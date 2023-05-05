@@ -2,13 +2,18 @@ import { useState } from 'react';
 import { Task } from './Task';
 import { useSelector, useDispatch } from 'react-redux';
 //import { addTasks } from '../../store/actions/actions';
-import { addNewTask } from '../../store/actions/actions';
+import {
+  addNewTask,
+  taskIsDoneHandler,
+  taskIsDonePatch,
+} from '../../store/actions/actions';
+
 import './TaskList.css';
 
 const TaskList = () => {
   const [addTask, setAddTask] = useState(false);
   const tasks = useSelector(state => state.main.tasks);
-  // console.log(tasks);
+  console.log('tasks from taskList', tasks);
 
   const [task, setTask] = useState('');
   const dispatch = useDispatch();
@@ -28,9 +33,16 @@ const TaskList = () => {
       {tasks.map(item => (
         <Task
           key={item.id}
-          name={item.name}
+          //name={item.name}
+          id={item.id}
           description={item.description}
-          taskCount={tasks.length}
+          isDone={item.isDone}
+          dataBaseKey={item.dataBaseKey}
+          onCheckBoxClick={(someId, dataBaseKey, isDone) => {
+            dispatch(taskIsDoneHandler(someId));
+            dispatch(taskIsDonePatch(dataBaseKey, isDone));
+          }}
+          // taskCount={tasks.length}
         />
       ))}
 

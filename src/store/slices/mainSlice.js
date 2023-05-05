@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuid } from 'uuid';
 
 const mainSlice = createSlice({
   name: 'main',
@@ -9,34 +10,27 @@ const mainSlice = createSlice({
       // {
       //   id: 1,
       //   description: 'to do laundry',
-      // },
-      // {
-      //   id: 2,
-      //   description: 'to clean the carpet',
-      // },
-      // {
-      //   id: 3,
-      //   description: ' buy groceries',
-      // },
-      // {
-      //   id: 4,
-      //   description: ' cook lunch',
+      //   isDone:false
       // },
     ],
   },
   reducers: {
     addTasks: (state, action) => {
-      console.log('добавилась задача');
-      console.log(action.payload);
-      // тут не добавляет корректно
+      console.log('добавилась задача', action.payload);
       if (action.payload) {
-        state.tasks.push({
-          id: state.tasks.length + 1,
-          description: action.payload,
-        });
+        state.tasks = [...action.payload];
       }
-
-      // state.tasks = [...{ id: state.tasks.length + 1, description: action.payload }];
+    },
+    addNewTaskHandler: (state, action) => {
+      if (action.payload) {
+        state.tasks.push({ id: uuid(), description: action.payload, isDone: false });
+      }
+    },
+    taskIsDoneHandler: (state, action) => {
+      console.log('onCheckBoxClick', action.payload);
+      state.tasks.map(task =>
+        task.id === action.payload ? (task.isDone = !task.isDone) : task,
+      );
     },
     mainErrorHandler: (state, action) => {
       state.error = action.payload;
