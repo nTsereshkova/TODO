@@ -40,9 +40,9 @@ const authSlice = createSlice({
     logoutHandler: state => {
       state.user.login = '';
       state.user.email = '';
-      // localStorage.removeItem('user');
-      // localStorage.removeItem('token');
-      localStorage.clear();
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      //localStorage.clear();
       state.isAuth = false;
     },
     authErrorHandler: (state, action) => {

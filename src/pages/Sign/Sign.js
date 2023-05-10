@@ -10,6 +10,10 @@ const Sign = () => {
   const navigate = useNavigate();
   const { error, isError } = useSelector(state => state.auth);
 
+  if (error) {
+    console.log(error);
+  }
+
   const [userData, setUserData] = useState({
     login: '',
     email: '',

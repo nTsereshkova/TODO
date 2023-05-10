@@ -39,11 +39,9 @@ function App() {
               {isAuth ? (
                 <>
                   <Route path="/" element={<Main />} />
-                  {/* <Route path="/user" element={<UserInfo />} /> */}
                   <Route path="*" element={<PageNotFound />} />
                   <Route path="/login" element={<Navigate replace to="/" />} />
                   <Route path="/sign" element={<Navigate replace to="/" />} />
-                  {/* <Route path="character/:id" element={<DetailPage />} /> */}
                 </>
               ) : (
                 <>

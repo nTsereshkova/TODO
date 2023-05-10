@@ -66,7 +66,7 @@ export const signInFetch = someData => {
             dispatch(setDataBaseKey(res.data.name));
           });
       })
-      .catch(err => dispatch(authErrorHandler(err.response.data.message)));
+      .catch(err => dispatch(authErrorHandler(err.response.data.error.message)));
   };
 };
 
@@ -96,7 +96,7 @@ export const loginFetch = someData => {
           dispatch(setTokenHandler(res.data.idToken));
         }
       })
-      .catch(err => dispatch(authErrorHandler(err.response.data.message)));
+      .catch(err => dispatch(authErrorHandler(err.response.data.error.message)));
   };
 };
 
