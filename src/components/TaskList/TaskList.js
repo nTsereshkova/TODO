@@ -6,6 +6,7 @@ import {
   addNewTask,
   taskIsDoneHandler,
   taskIsDonePatch,
+  blabla,
 } from '../../store/actions/actions';
 
 import './TaskList.css';
@@ -24,9 +25,15 @@ const TaskList = () => {
   const addNewTaskHandler = () => {
     // dispatch(addTasks(task));
     dispatch(addNewTask(task));
+    // dispatch(blabla());
     setAddTask(false);
     setTask('');
   };
+
+  // useEffect(() => {
+  //   dispatch(isDoneCheckHandler(item));
+  // });
+
   return (
     <div className="task-list">
       <p> {tasks.length} Tasks Today </p>
@@ -39,9 +46,12 @@ const TaskList = () => {
           description={item.description}
           isDone={item.isDone}
           dataBaseKey={item.dataBaseKey}
-          onCheckBoxClick={(someId, dataBaseKey, isDone) => {
-            dispatch(taskIsDoneHandler(someId));
-            dispatch(taskIsDonePatch(dataBaseKey, isDone));
+          // onCheckBoxClick={(someId, dataBaseKey, isDone) => {
+          //   dispatch(taskIsDoneHandler(someId));
+          //   dispatch(taskIsDonePatch(dataBaseKey, isDone));
+          // }}
+          onCheckBoxClick={item => {
+            dispatch(taskIsDonePatch(item));
           }}
           // taskCount={tasks.length}
         />

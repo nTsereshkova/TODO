@@ -23,6 +23,12 @@ const authSlice = createSlice({
       state.token = action.payload;
       localStorage.setItem('token', JSON.stringify(state.token));
     },
+    setDataBaseKey: (state, action) => {
+      console.log(typeof action.payload, 'from set data base key');
+      //state.user.dataBaseKey = action.payload;
+      //console.log(state.user.dataBaseKey);
+      localStorage.setItem('data', JSON.stringify(action.payload));
+    },
     loginCheckStatusHandler: state => {
       state.user = JSON.parse(localStorage.getItem('user'));
       if (state.user) {
@@ -34,8 +40,9 @@ const authSlice = createSlice({
     logoutHandler: state => {
       state.user.login = '';
       state.user.email = '';
-      localStorage.removeItem('user');
-      localStorage.removeItem('token');
+      // localStorage.removeItem('user');
+      // localStorage.removeItem('token');
+      localStorage.clear();
       state.isAuth = false;
     },
     authErrorHandler: (state, action) => {

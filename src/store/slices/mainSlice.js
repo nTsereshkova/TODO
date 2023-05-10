@@ -16,7 +16,6 @@ const mainSlice = createSlice({
   },
   reducers: {
     addTasks: (state, action) => {
-      console.log('добавилась задача', action.payload);
       if (action.payload) {
         state.tasks = [...action.payload];
       }
@@ -27,22 +26,25 @@ const mainSlice = createSlice({
       }
     },
     taskIsDoneHandler: (state, action) => {
-      console.log('onCheckBoxClick', action.payload);
+      console.log('onCheckBoxClick   taskIsDoneHandler', action.payload);
       state.tasks.map(task =>
         task.id === action.payload ? (task.isDone = !task.isDone) : task,
       );
     },
-    isDoneCheckHandler: (state, action) => {
-      console.log(action.payload);
-      let task = JSON.parse(localStorage.getItem(`${action.payload}`));
-      // прогнать через map на совпадение id таски , затем ей поменять исхождя из локал сторадж галочку
-      // if (state.task.isDone) {
-      //   // console.log('fgkjgfjfg)
-      // }
-      state.tasks.map(item =>
-        item.id === action.payload.id ? (item.isDone = action.payload.isDone) : item,
-      );
-    },
+    // isDoneCheckHandler: (state, action) => {
+    //   console.log(action.payload, 'isDoneCheckHandler');
+    //   let task = JSON.parse(localStorage.getItem(`${action.payload.description}`));
+    //   console.log(task, 'task to check wiyh localostorage');
+    //   // прогнать через map на совпадение id таски , затем ей поменять исхождя из локал сторадж галочку
+    //   // if (state.task.isDone) {
+    //   //   // console.log('fgkjgfjfg)
+    //   // }
+    //   state.tasks.map(item =>
+    //     item.description === action.payload.description
+    //       ? (item.isDone = task.isDone)
+    //       : item,
+    //   );
+    // },
     mainErrorHandler: (state, action) => {
       state.error = action.payload;
       state.isError = true;
@@ -55,5 +57,3 @@ const mainSlice = createSlice({
 });
 
 export default mainSlice;
-
-// послать автозапрос на установление в стейт текущей даты
