@@ -1,7 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logoutHandler } from '../../store/actions/actions';
+import {
+  logoutHandler,
+  clearTasksWhenLogOut,
+  firstLoadHandler,
+} from '../../store/actions/actions';
 import './Header.css';
 
 const Header = () => {
@@ -14,6 +18,9 @@ const Header = () => {
     // на случай если нажимаем на кнопку находясь на странице конкретной таски
     navigate('/');
     dispatch(logoutHandler());
+    dispatch(clearTasksWhenLogOut());
+    // добавила переменную firstload, чтобы при разлогинивании не перекидывал useEffect компонента Sign на страницу login
+    dispatch(firstLoadHandler(true));
   };
 
   return (
@@ -22,7 +29,6 @@ const Header = () => {
         <p> Tassker </p>
       </div>
       <div className="header_auth">
-        {/* {isAuth && <div className="header_auth_user">{user.login}</div>} */}
         {isAuth && <div onClick={authHandler}> Exit</div>}
       </div>
     </div>

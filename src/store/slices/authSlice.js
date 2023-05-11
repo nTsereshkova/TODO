@@ -11,6 +11,7 @@ const authSlice = createSlice({
     token: '',
     error: '',
     isError: false,
+    firstLoad: true,
   },
   reducers: {
     loginHandler: (state, action) => {
@@ -24,8 +25,7 @@ const authSlice = createSlice({
       localStorage.setItem('token', JSON.stringify(state.token));
     },
     setDataBaseKey: (state, action) => {
-      console.log(typeof action.payload, 'from set data base key');
-      //state.user.dataBaseKey = action.payload;
+      //console.log(action.payload, 'from set data base key');
       //console.log(state.user.dataBaseKey);
       localStorage.setItem('data', JSON.stringify(action.payload));
     },
@@ -36,7 +36,9 @@ const authSlice = createSlice({
       }
       state.token = JSON.parse(localStorage.getItem('token'));
     },
-
+    firstLoadHandler: (state, action) => {
+      state.firstLoad = action.payload;
+    },
     logoutHandler: state => {
       state.user.login = '';
       state.user.email = '';
@@ -48,6 +50,10 @@ const authSlice = createSlice({
     authErrorHandler: (state, action) => {
       state.error = action.payload;
       state.isError = true;
+    },
+    clearErrorHandler: state => {
+      state.error = '';
+      state.isError = false;
     },
   },
 });

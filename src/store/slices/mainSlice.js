@@ -53,6 +53,11 @@ const mainSlice = createSlice({
       console.log('show cLLENADR CLICKED');
       state.showCalendar = !state.showCalendar;
     },
+    clearTasksWhenLogOut: state => {
+      state.tasks.map(item => {
+        localStorage.removeItem(`${item.description}`);
+      });
+    },
   },
 });
 

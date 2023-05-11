@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginHandler } from '../../store/actions/actions';
-import { signInFetch } from '../../store/actions/actions';
+//import { loginHandler } from '../../store/actions/actions';
+import { signInFetch, firstLoadHandler } from '../../store/actions/actions';
 import './Sign.css';
 
 const Sign = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error, isError } = useSelector(state => state.auth);
+  const { error, isError, isAuth, firstLoad } = useSelector(state => state.auth);
 
   if (error) {
     console.log(error);
@@ -23,6 +23,19 @@ const Sign = () => {
   const changeHandler = event => {
     setUserData({ ...userData, [event.target.name]: event.target.value });
   };
+
+  const signInHandler = userData => {
+    dispatch(signInFetch(userData));
+    dispatch(firstLoadHandler(false));
+  };
+
+  useEffect(() => {
+    console.log(isError, 'is error ');
+    // по умолчанию знаечние isError false
+    if (isError === false && firstLoad === false) {
+      navigate('/login');
+    }
+  }, [isError, firstLoad, navigate]);
 
   return (
     <div className="auth">
@@ -46,10 +59,7 @@ const Sign = () => {
           onChange={changeHandler}
         />
         <button
-          onClick={() => {
-            navigate('/login');
-            dispatch(signInFetch(userData));
-          }}
+          onClick={() => signInHandler(userData)}
           type="button"
           className="auth_btn"
         >

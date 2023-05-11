@@ -13,7 +13,7 @@ import { fetchTasks } from './store/actions/actions';
 import './App.css';
 
 function App() {
-  const { isAuth, token } = useSelector(state => state.auth);
+  const { isAuth, token, isError } = useSelector(state => state.auth);
   // const {isDone} = useSelector((state)=> state.)
   const dispatch = useDispatch();
 

@@ -9,8 +9,10 @@ export const {
   setTokenHandler,
   setDataBaseKey,
   loginCheckStatusHandler,
+  firstLoadHandler,
   logoutHandler,
   authErrorHandler,
+  clearErrorHandler,
 } = authSlice.actions;
 
 export const {
@@ -20,6 +22,7 @@ export const {
   isDoneCheckHandler,
   mainErrorHandler,
   showCalendarHandler,
+  clearTasksWhenLogOut,
 } = mainSlice.actions;
 
 export const signInFetch = someData => {
@@ -39,34 +42,46 @@ export const signInFetch = someData => {
           },
         },
       )
+      // .then(res => {
+      //   if (res.status === 200) {
+      //     console.log('sign in successed');
+      //   }
+      //   return res;
+      // })
       .then(res => {
+        //console.log(res);
         if (res.status === 200) {
-          console.log('sign in successed');
-        }
-        return res;
-      })
-      .then(res => {
-        console.log(res);
-        axios
-          .post(
-            `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/users.json`,
-            JSON.stringify({
-              email: res.data.email,
-              id: res.data.localId,
-              token: res.data.idToken,
-            }),
-            {
-              headers: {
-                'Content-Type': 'application/json',
+          axios
+            .post(
+              `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/users.json`,
+              JSON.stringify({
+                email: res.data.email,
+                id: res.data.localId,
+                token: res.data.idToken,
+              }),
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                },
               },
-            },
-          )
-          .then(res => {
-            // console.log(res.data.name, 'res in sign ');
-            dispatch(setDataBaseKey(res.data.name));
-          });
+            )
+            .then(res => {
+              //console.log(res, 'res in sign ');
+              dispatch(setDataBaseKey(res.data.name));
+              dispatch(clearErrorHandler());
+              // console.log('здесь должны занулить ошибку ');
+            })
+            .catch(err => {
+              //console.log(err, 'err from inner  catch block sign in ');
+              dispatch(authErrorHandler(err.response.data.error.message));
+            });
+        }
       })
-      .catch(err => dispatch(authErrorHandler(err.response.data.error.message)));
+
+      .catch(err => {
+        // console.log(err, 'err from  outer catch block sign in ');
+        dispatch(authErrorHandler(err.response.data.error.message));
+      });
   };
 };
 
@@ -94,6 +109,7 @@ export const loginFetch = someData => {
           // console.log('whole resp from login', res);
           dispatch(loginHandler({ email: res.data.email, id: res.data.localId }));
           dispatch(setTokenHandler(res.data.idToken));
+          dispatch(clearErrorHandler());
         }
       })
       .catch(err => dispatch(authErrorHandler(err.response.data.error.message)));
