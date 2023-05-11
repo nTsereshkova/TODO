@@ -1,9 +1,7 @@
 import React from 'react';
 import './Task.css';
 
-const Task = ({ item, id, isDone, dataBaseKey, description, onCheckBoxClick }) => {
-  // console.log(isDone, description);
-
+const Task = ({ item, isDone, description, onCheckBoxClick }) => {
   return (
     <>
       <div className="task">

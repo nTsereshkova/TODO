@@ -42,14 +42,7 @@ export const signInFetch = someData => {
           },
         },
       )
-      // .then(res => {
-      //   if (res.status === 200) {
-      //     console.log('sign in successed');
-      //   }
-      //   return res;
-      // })
       .then(res => {
-        //console.log(res);
         if (res.status === 200) {
           axios
             .post(
@@ -66,22 +59,17 @@ export const signInFetch = someData => {
               },
             )
             .then(res => {
-              //console.log(res, 'res in sign ');
               dispatch(setDataBaseKey(res.data.name));
               dispatch(clearErrorHandler());
-              console.log('здесь должны занулить ошибку ');
+              //console.log('здесь должны занулить ошибку ');
               dispatch(firstLoadHandler(false));
             })
-            .catch(err => {
-              //console.log(err, 'err from inner  catch block sign in ');
-              dispatch(authErrorHandler(err.response.data.error.message));
-            });
+            .catch(err =>
+              dispatch(authErrorHandler(err.response.data.error.message)),
+            );
         }
       })
-      .catch(err => {
-        console.log(err, 'err from  outer catch block sign in ');
-        dispatch(authErrorHandler(err.response.data.error.message));
-      });
+      .catch(err => dispatch(authErrorHandler(err.response.data.error.message)));
   };
 };
 
@@ -105,8 +93,6 @@ export const loginFetch = someData => {
       )
       .then(res => {
         if (res.status === 200) {
-          // console.log('eeee', res.data);
-          // console.log('whole resp from login', res);
           dispatch(loginHandler({ email: res.data.email, id: res.data.localId }));
           dispatch(setTokenHandler(res.data.idToken));
           dispatch(clearErrorHandler());
@@ -135,7 +121,6 @@ export const fetchTasks = token => {
             name: response.data[key],
             dataBaseKey: key,
           };
-          // console.log(task);
           localStorage.setItem(
             `${task.name.task}`,
             JSON.stringify({

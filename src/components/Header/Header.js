@@ -9,8 +9,7 @@ import {
 import './Header.css';
 
 const Header = () => {
-  const { user, isAuth } = useSelector(state => state.auth);
-  // console.log('user', user);
+  const { isAuth } = useSelector(state => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -36,10 +35,3 @@ const Header = () => {
 };
 
 export default Header;
-
-{
-  /* <MdExitToApp className="logo" onClick={authHandler}
-/> */
-}
-
-// добавить кнопку выйти

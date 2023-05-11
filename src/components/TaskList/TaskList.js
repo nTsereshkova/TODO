@@ -23,16 +23,10 @@ const TaskList = () => {
     setTask(event.target.value);
   };
   const addNewTaskHandler = () => {
-    // dispatch(addTasks(task));
     dispatch(addNewTask(task));
-    // dispatch(blabla());
     setAddTask(false);
     setTask('');
   };
-
-  // useEffect(() => {
-  //   dispatch(isDoneCheckHandler(item));
-  // });
 
   return (
     <div className="task-list">
@@ -40,20 +34,14 @@ const TaskList = () => {
       {tasks.map(item => (
         <Task
           key={item.id}
-          //name={item.name}
           id={item.id}
           item={item}
           description={item.description}
           isDone={item.isDone}
           dataBaseKey={item.dataBaseKey}
-          // onCheckBoxClick={(someId, dataBaseKey, isDone) => {
-          //   dispatch(taskIsDoneHandler(someId));
-          //   dispatch(taskIsDonePatch(dataBaseKey, isDone));
-          // }}
           onCheckBoxClick={item => {
             dispatch(taskIsDonePatch(item));
           }}
-          // taskCount={tasks.length}
         />
       ))}
 

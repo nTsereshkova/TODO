@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-//import { loginHandler } from '../../store/actions/actions';
-import { signInFetch, firstLoadHandler } from '../../store/actions/actions';
+import { signInFetch } from '../../store/actions/actions';
 import './Sign.css';
 
 const Sign = () => {
@@ -28,10 +27,7 @@ const Sign = () => {
     dispatch(signInFetch(userData));
   };
 
-  console.log(firstLoad, 'first load ');
-
   useEffect(() => {
-    // console.log(isError, 'is error ');
     // по умолчанию знаечние isError false
     if (isError === false && firstLoad === false) {
       navigate('/login');

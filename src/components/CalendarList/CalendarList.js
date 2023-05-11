@@ -22,7 +22,6 @@ const CalendarList = () => {
     dateArr[i] = innerDate;
   }
 
-  //console.log(dateArr);
   return (
     <div>
       <div className="calendar">
@@ -47,53 +46,8 @@ const CalendarList = () => {
           />
         )}
       </div>
-      {/* <TaskList /> */}
     </div>
   );
 };
 
 export default CalendarList;
-
-// defaultActiveStartDate={date}
-// defaultValue={date}
-
-{
-  /* {date} {weekDay} {month} */
-}
-{
-  /* <Calendar defaultActiveStartDate={date} minDate={date} value={date}>
-        {/* <p> please add </p>
-        <TaskList /> */
-}
-// </Calendar> */}
-
-//console.log(new Date(Date.now()).getDay());
-// эта строка кода не раюботает
-// const weekDay = week.findIndex(
-//   (index, item) => index === new Date(Date.now()).getDay(),
-// );
-// const weekDay = week.indexOf(
-//   (index, item) => index === new Date(Date.now()).getDay(),
-// );
-// console.log(weekDay);
-// const month = new Date(Date.now()).getMonth().toString();
-
-// const monthes = [
-//   {}
-// ]
-
-// const week = [
-//   'Sunday',
-//   'Monday',
-//   'Tuesday',
-//   'Wednesday',
-//   'Thursday',
-//   'Friday',
-//   'Saturday',
-// ];
-
-//console.log('start date', date);
-//console.log(new Date(Date.now()).getDate());
-
-// const endDate = new Date().setDate(new Date(Date.now()).getDate() + 30);
-// console.log(Date.now());

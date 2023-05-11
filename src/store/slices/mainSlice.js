@@ -5,12 +5,14 @@ const mainSlice = createSlice({
   name: 'main',
   initialState: {
     showCalendar: false,
-    choosenDate: new Date(Date.now()),
+    choosenDate: new Date(Date.now()).toUTCString(),
     tasks: [
+      // пример вида каждого task
       // {
       //   id: 1,
       //   description: 'to do laundry',
-      //   isDone:false
+      //   isDone:false,
+      //   dataBaseKey: "-NV9uSZyXwCp2UojMciQ",
       // },
     ],
   },
@@ -31,20 +33,6 @@ const mainSlice = createSlice({
         task.id === action.payload ? (task.isDone = !task.isDone) : task,
       );
     },
-    // isDoneCheckHandler: (state, action) => {
-    //   console.log(action.payload, 'isDoneCheckHandler');
-    //   let task = JSON.parse(localStorage.getItem(`${action.payload.description}`));
-    //   console.log(task, 'task to check wiyh localostorage');
-    //   // прогнать через map на совпадение id таски , затем ей поменять исхождя из локал сторадж галочку
-    //   // if (state.task.isDone) {
-    //   //   // console.log('fgkjgfjfg)
-    //   // }
-    //   state.tasks.map(item =>
-    //     item.description === action.payload.description
-    //       ? (item.isDone = task.isDone)
-    //       : item,
-    //   );
-    // },
     mainErrorHandler: (state, action) => {
       state.error = action.payload;
       state.isError = true;
