@@ -26,11 +26,12 @@ const Sign = () => {
 
   const signInHandler = userData => {
     dispatch(signInFetch(userData));
-    dispatch(firstLoadHandler(false));
   };
 
+  console.log(firstLoad, 'first load ');
+
   useEffect(() => {
-    console.log(isError, 'is error ');
+    // console.log(isError, 'is error ');
     // по умолчанию знаечние isError false
     if (isError === false && firstLoad === false) {
       navigate('/login');

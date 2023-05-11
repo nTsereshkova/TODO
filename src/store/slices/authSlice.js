@@ -48,6 +48,7 @@ const authSlice = createSlice({
       state.isAuth = false;
     },
     authErrorHandler: (state, action) => {
+      console.log(action.payload, 'from auth error handler');
       state.error = action.payload;
       state.isError = true;
     },

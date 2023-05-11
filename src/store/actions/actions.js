@@ -69,7 +69,8 @@ export const signInFetch = someData => {
               //console.log(res, 'res in sign ');
               dispatch(setDataBaseKey(res.data.name));
               dispatch(clearErrorHandler());
-              // console.log('здесь должны занулить ошибку ');
+              console.log('здесь должны занулить ошибку ');
+              dispatch(firstLoadHandler(false));
             })
             .catch(err => {
               //console.log(err, 'err from inner  catch block sign in ');
@@ -77,9 +78,8 @@ export const signInFetch = someData => {
             });
         }
       })
-
       .catch(err => {
-        // console.log(err, 'err from  outer catch block sign in ');
+        console.log(err, 'err from  outer catch block sign in ');
         dispatch(authErrorHandler(err.response.data.error.message));
       });
   };
