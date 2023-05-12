@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
 
 const mainSlice = createSlice({
@@ -21,11 +21,13 @@ const mainSlice = createSlice({
       if (action.payload) {
         state.tasks = [...action.payload];
       }
+      console.log(state.tasks, 'addTasks ');
     },
     addNewTaskHandler: (state, action) => {
       if (action.payload) {
         state.tasks.push({ id: uuid(), description: action.payload, isDone: false });
       }
+      console.log(state.tasks, 'addTasks ');
     },
     taskIsDoneHandler: (state, action) => {
       console.log('onCheckBoxClick   taskIsDoneHandler', action.payload);
@@ -34,10 +36,10 @@ const mainSlice = createSlice({
       );
     },
     deleteTaskHandler: (state, action) => {
-      console.log(action.payload, 'delete task ');
-      console.log(state.tasks);
-      state.tasks.filter(item => {
-        console.log(item, 'this is item');
+      console.log(action.payload.id, 'delete task ');
+      console.log(current(state.tasks), 'state tasks from delete trask handler');
+      current(state.tasks).filter(item => {
+        console.log(item.id, 'this is item');
         return item.id != action.payload.id;
       });
     },

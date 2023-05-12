@@ -9,6 +9,7 @@
 }
 .delete:hover {
   color: orange;
+  cursor: pointer;
 }
 .task {
   display: flex;
