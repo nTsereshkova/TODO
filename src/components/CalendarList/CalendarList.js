@@ -27,7 +27,7 @@ const CalendarList = () => {
     dateArr[i] = innerDate;
   }
 
-  console.log(choosenDate, 'choosenDate');
+  //console.log(choosenDate, 'choosenDate');
   const changeDayHandler = day => {
     //console.log(day);
     dispatch(changeCalendarDay(day));

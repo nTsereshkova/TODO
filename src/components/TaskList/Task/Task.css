@@ -7,6 +7,9 @@
   margin: 0 10px;
   color: darkgray;
 }
+.delete:hover {
+  color: orange;
+}
 .task {
   display: flex;
   align-items: center;

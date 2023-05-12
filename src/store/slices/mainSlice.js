@@ -33,6 +33,14 @@ const mainSlice = createSlice({
         task.id === action.payload ? (task.isDone = !task.isDone) : task,
       );
     },
+    deleteTaskHandler: (state, action) => {
+      console.log(action.payload, 'delete task ');
+      console.log(state.tasks);
+      state.tasks.filter(item => {
+        console.log(item, 'this is item');
+        return item.id != action.payload.id;
+      });
+    },
     mainErrorHandler: (state, action) => {
       state.error = action.payload;
       state.isError = true;

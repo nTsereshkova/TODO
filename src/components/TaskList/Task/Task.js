@@ -1,11 +1,12 @@
 import React from 'react';
 import { AiFillDelete } from 'react-icons/ai';
+// import { deleteTaskHandler } from '../../../store/actions/actions';
 import './Task.css';
 
-const Task = ({ item, isDone, description, onCheckBoxClick }) => {
+const Task = ({ item, isDone, description, onCheckBoxClick, deleteHandler }) => {
   return (
     <div className="task-div">
-      {<AiFillDelete className="delete" />}
+      {<AiFillDelete className="delete" onClick={() => deleteHandler(item)} />}
       <div className="task">
         <input
           type="checkbox"

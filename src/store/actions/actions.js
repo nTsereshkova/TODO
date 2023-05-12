@@ -20,6 +20,7 @@ export const {
   addNewTaskHandler,
   taskIsDoneHandler,
   isDoneCheckHandler,
+  deleteTaskHandler,
   mainErrorHandler,
   showCalendarHandler,
   changeCalendarDay,
@@ -105,6 +106,7 @@ export const loginFetch = someData => {
 
 // день по умолчанию сегодняшнее число
 const defaultDay = new Date(Date.now()).toISOString().slice(0, 10);
+
 export const fetchTasks = (date = defaultDay) => {
   let dataBaseKey = JSON.parse(localStorage.getItem('data'));
   console.log('сработал fetch tasks ', date);

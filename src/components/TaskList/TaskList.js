@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { Task } from './Task';
 import { useSelector, useDispatch } from 'react-redux';
-import { AiFillDelete } from 'react-icons/ai';
 //import { addTasks } from '../../store/actions/actions';
 import {
   addNewTask,
   taskIsDoneHandler,
   taskIsDonePatch,
-  blabla,
+  deleteTaskHandler,
 } from '../../store/actions/actions';
 
 import './TaskList.css';
@@ -15,7 +14,7 @@ import './TaskList.css';
 const TaskList = () => {
   const [addTask, setAddTask] = useState(false);
   const { tasks, choosenDate } = useSelector(state => state.main);
-  //console.log('tasks from taskList', tasks);
+  console.log('tasks from taskList', tasks);
 
   const [task, setTask] = useState('');
   const dispatch = useDispatch();
@@ -42,6 +41,11 @@ const TaskList = () => {
     }
   });
 
+  const deleteHandler = item => {
+    console.log(item, 'что прихожит в диспатч ');
+    dispatch(deleteTaskHandler(item));
+  };
+
   return (
     <div className="task-list">
       <div className="show-dots">
@@ -61,6 +65,7 @@ const TaskList = () => {
           onCheckBoxClick={item => {
             dispatch(taskIsDonePatch(item, choosenDate));
           }}
+          deleteHandler={deleteHandler}
         />
       ))}
 
