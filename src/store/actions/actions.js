@@ -107,6 +107,7 @@ export const loginFetch = someData => {
 const defaultDay = new Date(Date.now()).toISOString().slice(0, 10);
 export const fetchTasks = (date = defaultDay) => {
   let dataBaseKey = JSON.parse(localStorage.getItem('data'));
+  console.log('сработал fetch tasks ', date);
   return dispatch => {
     axios
       .get(
@@ -167,7 +168,7 @@ export const addNewTask = (task, date = defaultDay) => {
       )
       .then(res => {
         dispatch(addNewTaskHandler(JSON.parse(res.config.data).task));
-        dispatch(fetchTasks());
+        dispatch(fetchTasks(date));
       });
   };
 };
