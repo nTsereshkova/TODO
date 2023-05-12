@@ -5,7 +5,7 @@ const mainSlice = createSlice({
   name: 'main',
   initialState: {
     showCalendar: false,
-    choosenDate: new Date(Date.now()).toUTCString(),
+    choosenDate: new Date(Date.now()).toISOString().slice(0, 10),
     tasks: [
       // пример вида каждого task
       // {
@@ -40,6 +40,10 @@ const mainSlice = createSlice({
     showCalendarHandler: state => {
       console.log('show cLLENADR CLICKED');
       state.showCalendar = !state.showCalendar;
+    },
+    changeCalendarDay: (state, action) => {
+      //console.log(action.payload, 'changeCalendarDay');
+      state.choosenDate = action.payload;
     },
     clearTasksWhenLogOut: state => {
       state.tasks.map(item => {

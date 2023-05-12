@@ -1,30 +1,20 @@
 import './CalendarDay.css';
 
-const CalendarDay = ({ item }) => {
-  //console.log(item);
-  // const arr = item.split('-');
-  // console.log(arr);
-  //console.log(typeof item);
-  const weekDay = item.slice(0, 3);
-  const day = item.slice(5, 7);
+const CalendarDay = ({ item, changeDayHandler }) => {
+  // console.log(item);
+
+  const weekDay = item.toUTCString().slice(0, 3);
+  const day = item.toUTCString().slice(5, 7);
 
   return (
-    <button className="calendar-day">
+    <button
+      className="calendar-day"
+      onClick={() => changeDayHandler(item.toISOString().slice(0, 10))}
+    >
       <div>{day}</div>
       <div> {weekDay}</div>
     </button>
-    // <div className="calendar-day">
-    //   <div>{day}</div>
-    //   <div> {weekDay}</div>
-    // </div>
   );
 };
 
 export default CalendarDay;
-
-{
-  /* <button className="calendar-day">
-{day}
-{weekDay}
-</button> */
-}

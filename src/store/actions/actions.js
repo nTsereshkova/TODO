@@ -22,6 +22,7 @@ export const {
   isDoneCheckHandler,
   mainErrorHandler,
   showCalendarHandler,
+  changeCalendarDay,
   clearTasksWhenLogOut,
 } = mainSlice.actions;
 
@@ -102,12 +103,14 @@ export const loginFetch = someData => {
   };
 };
 
-export const fetchTasks = token => {
+// день по умолчанию сегодняшнее число
+const defaultDay = new Date(Date.now()).toISOString().slice(0, 10);
+export const fetchTasks = (date = defaultDay) => {
   let dataBaseKey = JSON.parse(localStorage.getItem('data'));
   return dispatch => {
     axios
       .get(
-        `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/users/${dataBaseKey}/tasks.json`,
+        `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/users/${dataBaseKey}/${date}/tasks.json`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -149,12 +152,12 @@ export const fetchTasks = token => {
   };
 };
 
-export const addNewTask = task => {
+export const addNewTask = (task, date = defaultDay) => {
   let dataBaseKey = JSON.parse(localStorage.getItem('data'));
   return dispatch => {
     axios
       .post(
-        `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/users/${dataBaseKey}/tasks.json`,
+        `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/users/${dataBaseKey}/${date}/tasks.json`,
         JSON.stringify({ task, isDone: false }),
         {
           headers: {
@@ -169,7 +172,7 @@ export const addNewTask = task => {
   };
 };
 
-export const taskIsDonePatch = item => {
+export const taskIsDonePatch = (item, date = defaultDay) => {
   const userDataBaseKey = JSON.parse(localStorage.getItem('data'));
   console.log(item, 'item   taskIsDonePatch');
 
@@ -178,7 +181,7 @@ export const taskIsDonePatch = item => {
     // сначала изменения в базе данных
     axios
       .patch(
-        `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/users/${userDataBaseKey}/tasks/${dataBaseKey}.json`,
+        `https://smart-todo-645e5-default-rtdb.europe-west1.firebasedatabase.app/users/${userDataBaseKey}/${date}/tasks/${dataBaseKey}.json`,
         {
           isDone: !isDone,
         },

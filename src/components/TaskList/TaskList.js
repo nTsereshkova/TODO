@@ -13,7 +13,7 @@ import './TaskList.css';
 
 const TaskList = () => {
   const [addTask, setAddTask] = useState(false);
-  const tasks = useSelector(state => state.main.tasks);
+  const { tasks, choosenDate } = useSelector(state => state.main);
   //console.log('tasks from taskList', tasks);
 
   const [task, setTask] = useState('');
@@ -23,7 +23,7 @@ const TaskList = () => {
     setTask(event.target.value);
   };
   const addNewTaskHandler = () => {
-    dispatch(addNewTask(task));
+    dispatch(addNewTask(task, choosenDate));
     setAddTask(false);
     setTask('');
   };
@@ -40,7 +40,7 @@ const TaskList = () => {
           isDone={item.isDone}
           dataBaseKey={item.dataBaseKey}
           onCheckBoxClick={item => {
-            dispatch(taskIsDonePatch(item));
+            dispatch(taskIsDonePatch(item, choosenDate));
           }}
         />
       ))}
