@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { SlLogout } from 'react-icons/sl';
 import {
   logoutHandler,
   clearTasksWhenLogOut,
@@ -27,9 +28,7 @@ const Header = () => {
       <div className="header_info">
         <p> Tassker </p>
       </div>
-      <div className="header_auth">
-        {isAuth && <div onClick={authHandler}> Exit</div>}
-      </div>
+      {isAuth && <SlLogout className="header_exit" onClick={authHandler} />}
     </div>
   );
 };

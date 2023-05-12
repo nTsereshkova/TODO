@@ -1,10 +1,14 @@
 .calendar {
   display: flex;
   flex-direction: row;
+  /* overflow: scroll; */
   width: 100%;
   align-items: flex-start;
   padding-left: 30px;
   margin: 0;
+  /* border: 1px solid red; */
+  /* scrollbar-width: thin;
+  scrollbar-color: red; */
 }
 /* input[type='date'] {
   background-color: red;
@@ -17,5 +21,16 @@
   height: auto;
   display: flex;
   flex-wrap: nowrap;
-  overflow: visible;
+  /* overflow: visible; */
+  overflow-x: scroll;
+  /* border: 1px solid blue; */
+}
+.calendar-item::-webkit-scrollbar {
+  padding-top: 10px;
+  height: 10px;
+}
+
+.calendar-item::-webkit-scrollbar-thumb {
+  background-color: orange;
+  border-radius: 10px;
 }

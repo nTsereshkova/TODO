@@ -13,7 +13,7 @@ import './CalendarList.css';
 
 const CalendarList = () => {
   const dispatch = useDispatch();
-  const { showCalendar, choosenDate } = useSelector(state => state.main);
+  const { showCalendar, choosenDate, tasks } = useSelector(state => state.main);
 
   const date = new Date(Date.now()).toISOString().slice(0, 10);
 
@@ -38,11 +38,12 @@ const CalendarList = () => {
     <div>
       <div className="calendar">
         <div className="calendar-item">
-          {dateArr.map((item, index) => (
+          {dateArr.map(item => (
             <CalendarDay
               item={item}
               key={item}
               changeDayHandler={changeDayHandler}
+              tasks={tasks}
             />
           ))}
         </div>
@@ -59,6 +60,7 @@ const CalendarList = () => {
             onChange={event => {
               //console.log('здесь послать запрос с новой датой', event.target.value);
               dispatch(changeCalendarDay(event.target.value));
+              dispatch(fetchTasks(event.target.value));
             }}
           />
         )}

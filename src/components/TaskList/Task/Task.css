@@ -1,3 +1,12 @@
+.task-div {
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+.delete {
+  margin: 0 10px;
+  color: darkgray;
+}
 .task {
   display: flex;
   align-items: center;

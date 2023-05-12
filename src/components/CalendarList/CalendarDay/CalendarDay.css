@@ -10,6 +10,7 @@
   height: 60px;
   flex: 0 0 50px;
   margin: 0 10px;
+  margin-bottom: 10px;
 }
 .calendar-day:first-child {
   margin: 0;
@@ -24,9 +25,15 @@
   background-color: black;
   border: 1px solid black;
 }
-
 .calendar-day:active {
   color: white;
   background-color: orange;
   border: 1px solid orange;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: black;
+  border-radius: 10px;
 }
